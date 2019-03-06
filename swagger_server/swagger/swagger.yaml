@@ -1,0 +1,70 @@
+---
+swagger: "2.0"
+info:
+  description: "uber + google "
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "Uber"
+  description: "obtencion de tiempo estimado de viaje a travez de lon y lat de inicio\
+    \ y lon y lat de final"
+  externalDocs:
+    description: "Find out more"
+    url: "https://developer.uber.com/docs/riders/references/api/v1.2/requests-estimate-post"
+schemes:
+- "https"
+- "http"
+
+paths:
+  /get_time:
+    post:
+      tags:
+      - "Uber"
+      summary: "obtener tiempo estimado con las locaciones"
+      description: ""
+      operationId: "get_time_post"
+      consumes:
+      - "application/json   "
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "hello"
+        required: true
+        schema:
+          $ref: "#/definitions/estimated_time"
+      responses:
+        200:
+          description: "OK"
+      x-swagger-router-controller: "swagger_server.controllers.uber_controller"
+  
+      
+definitions:
+  estimated_time:
+    type: "object"
+    properties:
+      longitud_inicial:
+        type: "number"
+        
+      latitud_inicial:
+        type: "number"
+        
+      longitud_final:
+        type: "number"
+        
+      latitud_final:
+        type: "number"
+        
+    example:
+      longitud_inicial: -122.411
+      latitud_inicial: 37.770
+      longitud_final: -122.405
+      latitud_final: 37.791
+      
